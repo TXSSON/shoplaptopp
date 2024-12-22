@@ -54,7 +54,10 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Roles [id=" + id + ", name=" + name + ", description=" + description + ", users=" + users + "]";
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
-
 }

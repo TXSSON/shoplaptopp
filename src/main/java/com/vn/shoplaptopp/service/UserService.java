@@ -6,6 +6,10 @@ import com.vn.shoplaptopp.domain.Role;
 import com.vn.shoplaptopp.domain.User;
 import com.vn.shoplaptopp.repository.RoleRepository;
 import com.vn.shoplaptopp.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,9 +26,6 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    public String getHomePage() {
-        return new String("Xin chào đến với UserService");
-    }
 
     public User handleSaveUser(User newUser) {
         if (newUser.getId() == null) {
@@ -41,8 +42,9 @@ public class UserService {
         return this.userRepository.save(currentUser);
     }
 
-    public List<User> getAllUsers() {
-        return this.userRepository.findAll();
+    public Page<User> getAllPageUsers(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return this.userRepository.findAll(pageable);
     }
 
     public User getUserById(Long id) {
@@ -55,6 +57,18 @@ public class UserService {
 
     public Role getRoleByName(String name) {
         return this.roleRepository.findByName(name);
+    }
+
+    public Boolean getEmailExist(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
+    public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
+    public Long countAllUsers() {
+        return this.userRepository.count();
     }
 
 }

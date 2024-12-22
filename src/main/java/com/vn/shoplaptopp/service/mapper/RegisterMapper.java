@@ -1,4 +1,4 @@
-package com.vn.shoplaptopp.service.Mapper;
+package com.vn.shoplaptopp.service.mapper;
 
 
 import com.vn.shoplaptopp.domain.User;

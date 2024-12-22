@@ -5,6 +5,7 @@ import java.util.List;
 import com.vn.shoplaptopp.domain.User;
 import com.vn.shoplaptopp.service.UploadImageService;
 import com.vn.shoplaptopp.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +35,19 @@ public class UserController {
     }
 
     @GetMapping("/admin/user")
-    public String getUsersPage(Model model) {
-        List<User> users = this.userService.getAllUsers();
+    public String getUsersPage(Model model,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+        int currentPage = page <= 0 ? 1 : page;
+        Page<User> userPage = this.userService.getAllPageUsers(currentPage - 1, 3);
+        List<User> users = userPage.getContent();
+        int totalPages = userPage.getTotalPages();
+        if(currentPage > totalPages) {
+            currentPage = totalPages;
+            userPage = this.userService.getAllPageUsers(currentPage - 1, 3);
+            users = userPage.getContent();
+        }
         model.addAttribute("users", users);
+        model.addAttribute("totalPage", totalPages);
+        model.addAttribute("currentPage", currentPage);
         return "admin/user/show";
     }
 

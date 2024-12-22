@@ -119,7 +119,7 @@
                                                     <div class="col">
                                                         <label for="formFile" class="form-label">Avatar</label>
                                                         <input class="form-control" type="file" id="avatarFile"
-                                                            accept=" .png, .jsp, .jpeg" name="fileImage">
+                                                            accept=" .png, .jsp, .jpeg, .jpg" name="fileImage">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">

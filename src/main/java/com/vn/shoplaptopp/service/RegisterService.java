@@ -2,7 +2,7 @@ package com.vn.shoplaptopp.service;
 
 import com.vn.shoplaptopp.domain.User;
 import com.vn.shoplaptopp.domain.dto.request.RegisterRequest;
-import com.vn.shoplaptopp.service.Mapper.RegisterMapper;
+import com.vn.shoplaptopp.service.mapper.RegisterMapper;
 import org.springframework.stereotype.Service;
 
 
