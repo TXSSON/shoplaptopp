@@ -1,35 +1,18 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+tên: Bản demo GitHub Actions
+run-name: ${{ github.actor }} đang thử nghiệm GitHub Actions 🚀
+trên: [đẩy]
+việc làm:
+  Khám phá-GitHub-Hành động:
+    chạy trên: ubuntu-latest
+    các bước:
+      - chạy: echo "🎉 Công việc được kích hoạt tự động bởi sự kiện ${{ github.event_name }}."
+      - chạy: echo "🐧 Công việc này hiện đang chạy trên máy chủ ${{ runner.os }} do GitHub lưu trữ!"
+      - chạy: echo "🔎 Tên nhánh của bạn là ${{ github.ref }} và kho lưu trữ của bạn là ${{ github.repository }}."
+      - name: Kiểm tra mã kho lưu trữ
+        sử dụng: hành động/kiểm tra@v5
+      - run: echo "💡 Kho lưu trữ ${{ github.repository }} đã được sao chép vào trình chạy."
+      - chạy: echo "🖥️ Quy trình làm việc hiện đã sẵn sàng để kiểm tra mã của bạn trên trình chạy."
+      - name: Liệt kê các tập tin trong kho lưu trữ
+        chạy: |
+          ls ${{ github.workspace }}
+      - chạy: echo "🍏 Trạng thái của công việc này là ${{ job.status }}."
